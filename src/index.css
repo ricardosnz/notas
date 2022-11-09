@@ -1,0 +1,68 @@
+:root {
+  --normal-font: 1.5rem;
+  --bold-font: 700;
+  --bolder-font: 900;
+  --bg-color: #20035a;
+  --primary-color: rgb(255, 198, 41);
+  --secondary-color: #61dafb;
+  --green: #00a508;
+  --red: rgb(218, 0, 0);
+  --primary-shadow: #8b8eaf;
+  --secondary-shadow: #a17a69;
+  --line-height: 1.7rem;
+  --transition: 400ms;
+}
+
+/* CSS Resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+}
+
+button {
+  padding: 5px;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+body {
+  font-size: 62.5%;
+  color: var(--primary-color);
+  background-color: var(--bg-color);
+}
+
+body, input{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.App {
+	height: 90vh;
+	position: relative;
+	font-size: var(--normal-font);
+}
+
+@media (min-width: 400px) {
+	.App {
+		height: 100vh;
+	}
+}
