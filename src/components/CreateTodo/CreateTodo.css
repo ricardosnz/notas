@@ -42,13 +42,14 @@
 
 .CreateTodo form .buttons {
 	margin: 1rem 1rem 0;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+	display: flex;
+	justify-content: center;
+	flex-direction: row-reverse;
 	gap: 2rem;
 }
 
 .CreateTodo form button {
-	height: 2.5rem;
+	padding: 20px;
 	font-weight: 700;
 	border-radius: 10px;
 	transition: all var(--transition);

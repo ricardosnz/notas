@@ -3,7 +3,7 @@ import { TodoContext } from '../../TodoContext';
 import './ConfirmDelete.css';
 
 const ConfirmDelete = () => {
-  const { handleDeleteTodo } = useContext(TodoContext);
+  const { handleDeleteTodo } = useContext(TodoContext);  
   return (
     <div className="ConfirmDelete">
       <div className="confirm-container">

@@ -24,11 +24,11 @@ const CreateTodo = () => {
           placeholder="Crea tu To Do aqui ..."
         />
         <div className="buttons">
-          <button className="buttons__cancel" onClick={handleConfirmTodo}>
-            Cancelar
-          </button>
           <button className="buttons__add" onClick={handleCreateTodo}>
             Agregar
+          </button>
+          <button className="buttons__cancel" onClick={handleConfirmTodo}>
+            Cancelar
           </button>
         </div>
       </form>

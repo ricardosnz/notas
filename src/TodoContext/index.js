@@ -2,7 +2,7 @@ import React, { useState, useReducer, createContext } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const TodoContext = createContext();
-
+ 
 const TodoProvider = (props) => {
   const [todos, setTodos] = useLocalStorage('TODOV1', []);
   const [searchValue, setSearchValue] = useState('');
@@ -48,7 +48,7 @@ const TodoProvider = (props) => {
   //---------------------Create Todo---------------------
 
   const handleConfirmTodo = () => {
-    created ? setCreated(false) : setCreated(true);
+    setCreated(prevCreated => !prevCreated)
   };
 
   const handleCreateTodo = () => {
