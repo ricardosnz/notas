@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import { TodoContext } from '../../TodoContext';
 import './TodoSearch.css';
-const TodoSearch = () => {
+const TodoSearcher = () => {
   const { searchValue, setSearchValue } = useContext(TodoContext);
 
   const handleChange = (e) => {
@@ -20,6 +20,36 @@ const TodoSearch = () => {
           <input
             id="search"
             value={searchValue}
+            onChange={handleChange}
+            placeholder="Buscar to do..."
+          ></input>
+          🔍
+        </label>
+      </form>
+    </div>
+  );
+};
+
+const TodoSearch = () => {
+  const [search, setSearch] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // filterTodos(search)
+  };
+  const handleChange = ({ target }) => {
+    setSearch(target.value);
+    // filterTodos(target.value)
+  };
+
+  return (
+    <div className="TodoSearch">
+      <h2 className="search__title">ToDo</h2>
+      <form onSubmit={handleSubmit} className="search__form">
+        <label htmlFor="search" className="search__input">
+          <input
+            name="search"
+            value={search}
             onChange={handleChange}
             placeholder="Buscar to do..."
           ></input>

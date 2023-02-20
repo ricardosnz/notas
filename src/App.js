@@ -7,22 +7,26 @@ import { TodoCounter } from './components/TodoCounter';
 import { TodoList } from './components/TodoList';
 import { TodoSearch } from './components/TodoSearch';
 
+import TestProvider from './TodoContext/test'
+
 const App = () => {
   const { created, deleted } = useContext(TodoContext);
 
   return (
     <div className="App">
-      <TodoSearch />
+      <TestProvider>
+        <TodoSearch />
 
-      <TodoCounter />
+        <TodoCounter />
 
-      <TodoList />
+        <TodoList />
 
-      <CreateTodoButton />
+        <CreateTodoButton />
 
-      {deleted && <ConfirmDelete />}
+        {deleted && <ConfirmDelete />}
 
-      {created && <CreateTodo />}
+        {created && <CreateTodo />}
+      </TestProvider>
     </div>
   );
 };

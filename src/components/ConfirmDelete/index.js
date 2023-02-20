@@ -2,26 +2,28 @@ import React, { useContext } from 'react';
 import { TodoContext } from '../../TodoContext';
 import './ConfirmDelete.css';
 
+import Modal from '../Modal';
+
 const ConfirmDelete = () => {
-  const { handleDeleteTodo } = useContext(TodoContext);  
+  const { handleDeleteTodo } = useContext(TodoContext);
   return (
-    <div className="ConfirmDelete">
-      <div className="confirm-container">
-        <h4>Estas seguro de eliminarlo?</h4>
+    <Modal classname="ConfirmDelete">
+      <h3 className="ConfirmDelete-title">Estas seguro de eliminarlo?</h3>
+      <div>
         <button
           className="confirmButton"
           onClick={() => handleDeleteTodo(true)}
         >
-          Claro que si
+          Eliminar
         </button>
         <button
           className="cancelButton"
           onClick={() => handleDeleteTodo(false)}
         >
-          Claro que no
+          Cancelar
         </button>
       </div>
-    </div>
+    </Modal>
   );
 };
 

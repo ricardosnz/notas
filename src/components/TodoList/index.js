@@ -3,6 +3,8 @@ import './TodoList.css';
 import { TodoItem } from '../TodoItem';
 import { TodoContext } from '../../TodoContext';
 
+import useTodos from '../../hooks/useTodos';
+
 const TodoList = () => {
   const { listTodos } = useContext(TodoContext);
 
@@ -12,6 +14,19 @@ const TodoList = () => {
         listTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
       ) : (
         <h3>No hay tareas.</h3>
+      )}
+    </ul>
+  );
+};
+
+const TodoLister = () => {
+  const { todos } = useTodos();
+  return (
+    <ul className="TodoList">
+      {!todos.length ? (
+        <h3>No hay tareas.</h3>
+      ) : (
+        todos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
       )}
     </ul>
   );

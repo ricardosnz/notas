@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { TodoContext } from '../../TodoContext';
 import './CreateTodo.css';
 
+import Modal from '../Modal';
+
 const CreateTodo = () => {
   const { handleConfirmTodo, handleCreateTodo, setNewTodo } =
     useContext(TodoContext);
@@ -11,7 +13,7 @@ const CreateTodo = () => {
   const handleChange = (e) => setNewTodo(e.target.value);
 
   return (
-    <div className="CreateTodo">
+    <Modal classname="CreateTodo">
       <form onSubmit={handleSubmit}>
         <label htmlFor="todoInput" className="title">
           Crear otra Tarea
@@ -32,7 +34,7 @@ const CreateTodo = () => {
           </button>
         </div>
       </form>
-    </div>
+    </Modal>
   );
 };
 

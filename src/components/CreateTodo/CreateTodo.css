@@ -1,83 +1,65 @@
-.CreateTodo {
-	display: grid;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	top: 0; left: 0; right: 0; bottom: 0;
-	background-color: rgba(0, 0, 0, 0.8);
-
-	animation: create 500ms ;
-}
-
-@keyframes create {
-  0% {
-    opacity: 0.2;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-
 .CreateTodo form {
-	display: flex;
-	flex-direction: column;
-	padding: 2rem;
-	border-radius: 10px;
-	color: var(--primary-color);
-	background-color: var(--bg-color);
+  color: var(--primary-color);
+  background-color: var(--bg-color);
 }
 
 .CreateTodo form .title {
-	font-size: 2rem;
-	padding: 0 1.5rem 1rem;
-	font-weight: var(--bold-font);
+  font-size: 1.4rem;
+  padding: 0 1.5rem 1rem;
+  font-weight: var(--bold-font);
 }
 
 .CreateTodo form .todoInput {
-	padding: 0.7rem;
-	border: 2px solid var(--primary-color);
-	border-radius: 10px;
+  padding: 0.7rem;
+  font-size: 0.8rem;
+  display: block;
+  width: 100%;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
 }
 
 .CreateTodo form .buttons {
-	margin: 1rem 1rem 0;
-	display: flex;
-	justify-content: center;
-	flex-direction: row-reverse;
-	gap: 2rem;
+  margin: 1rem 1rem 0;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .CreateTodo form button {
-	padding: 20px;
-	font-weight: 700;
-	border-radius: 10px;
-	transition: all var(--transition);
-	cursor: pointer;
+  padding: 20px;
+  font-weight: 700;
+  border-radius: 10px;
+  transition: all var(--transition);
+  cursor: pointer;
 }
 
 .CreateTodo form button:hover {
-	transition: all var(--transition);
+  transition: all var(--transition);
 }
 
 .CreateTodo form .buttons__add {
-	background-color: var(--green);
+  background-color: var(--green);
 }
 
-.CreateTodo form .buttons__add:hover{
-	background-color: green;
+.CreateTodo form .buttons__add:hover {
+  background-color: green;
 }
 
-.CreateTodo form .buttons__cancel{
-	background: var(--red);
+.CreateTodo form .buttons__cancel {
+  background: var(--red);
 }
 
 .CreateTodo form .buttons__cancel:hover {
-	background-color: rgb(163, 0, 0);
+  background-color: rgb(163, 0, 0);
 }
 
-@media (min-width: 400px) {
-	.CreateTodo {
-		height: 100vh;
-	}
+@media (min-width: 500px) {
+  .CreateTodo form .title {
+    font-size: 2.2rem;
+  }
+  .CreateTodo form .buttons button,
+  .CreateTodo form .todoInput {
+    font-size: 1.2rem;
+  }
 }
