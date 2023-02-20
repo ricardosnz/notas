@@ -1,37 +1,33 @@
+
+
+/*
+const [todos, setTodos] = useLocalStorage('TODOV1', []);
+const [searchValue, setSearchValue] = useState('');
+const [deleted, setDeleted] = useState(false);
+const [created, setCreated] = useState(false);
+const [indexTodo, setIndex] = useState('');
+const [newTodo, setNewTodo] = useState('');
+*/
 const initialTodoState = {
   todos: [],
-  searchValue: '',
-  deleted: false,
-  created: false,
   indexTodo: '',
-  newTodo: ''
 };
 
- 
+// removed: SET_SEARCH_VALUE, SET_DELETED, SET_CREATED, SET_NEW_TODO, 
 function todoReducer(state, action) {
   switch (action.type) {
     case 'SET_TODOS':
       return { ...state, todos: action.payload };
-    case 'SET_SEARCH_VALUE':
-      return { ...state, searchValue: action.payload };
-    case 'SET_DELETED':      
-      return { ...state, deleted: !state.deleted };
-    case 'SET_CREATED':
-      return { ...state, created: action.payload };
     case 'SET_INDEX_TODO':
       return { ...state, indexTodo: action.payload };
-    case 'SET_NEW_TODO':
-      return { ...state, newTodo: action.payload };
     case 'ADD_TODO':
-      const newTodo = {
-        id: state.todos.length + 1,
-        title: action.payload,
-        completed: false,
-      }
+      const newTodo = {id: state.todos.length + 1, ...payload, completed: false}
       return { ...state, todos: [...state.todos, newTodo] };
     case 'DELETE_TODO':
       return { ...state, todos: state.todos.filter((todo) => todo.id !== state.indexTodo) };
     case 'TOGGLE_COMPLETED_TODO':
+      const indexTodo = state.todos.findIndex(({id}) => id === payload)
+      const newTodos = structuredclone()
       return {
         ...state,
         todos: state.todos.map((todo) => {

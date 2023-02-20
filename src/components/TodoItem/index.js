@@ -4,27 +4,22 @@ import './TodoItem.css';
 // pendiente cambiar el icono de elimminar
 const TodoItem = ({ todo }) => {
   const { handleCompletedTodo, handleConfirmDelete } = useContext(TodoContext);
+  const classNameCompleted = todo.completed ? 'completed' : '';
+  const contentCompleted = todo.completed ? '🔨' : '✔';
 
   return (
-    <>
-      <li className="TodoItem">
-        <button
-          className={`uncompleted-Icon ${todo.completed && 'completed-Icon'}`}
-          onClick={() => handleCompletedTodo(todo)}
-        >
-          {todo.completed ? <span>completado</span> : <span>complentar</span>}
-        </button>
-        <div className={`titleTodo ${todo.completed && 'completed'}`}>
-          {todo.title}
-        </div>
-        <button
-          className="deleteIcon"
-          onClick={() => handleConfirmDelete(todo)}
-        >
-          Eliminar
-        </button>
-      </li>
-    </>
+    <li className={`TodoItem ${classNameCompleted}`}>
+      <button
+        className="uncompleted-Icon"
+        onClick={() => handleCompletedTodo(todo)}
+      >
+        {contentCompleted}
+      </button>
+      <h2 className="titleTodo">{todo.title}</h2>
+      <button className="deleteIcon" onClick={() => handleConfirmDelete(todo)}>
+        🗑
+      </button>
+    </li>
   );
 };
 

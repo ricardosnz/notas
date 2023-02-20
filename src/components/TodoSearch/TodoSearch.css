@@ -1,14 +1,16 @@
 .TodoSearch {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   max-width: 1024px;
   margin: 1.5rem auto;
-  justify-content: space-around;
   transition: all var(--transition);
 }
 
 .search__title {
-  animation-name: todo;
-  animation-duration: 2s;
+  animation: todo 2s;
   font-weight: var(--bold-font);
 }
 
@@ -25,8 +27,9 @@
 
 .search__input {
   display: flex;
-  padding: 0.4rem;
-  width: 24rem;
+  align-items: center;
+  padding: 0.2rem;
+  max-width: 24rem;
   color: #000;
   font-size: 1.2rem;
   background-color: rgb(255, 255, 255);
@@ -36,8 +39,7 @@
 }
 
 .search__input input {
-  padding: 0.6rem;
-  display: block;
+  padding: 0.8rem;
   width: 90%;
   font-size: 1.2rem;
 }

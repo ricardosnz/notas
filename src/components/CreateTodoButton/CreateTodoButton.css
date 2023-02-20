@@ -1,20 +1,25 @@
 .CreateTodoButton {
-	text-align: right;
-	width: 100%;
-	margin: 0 auto;
-	padding: 1rem;
-	max-width: 600px;
+  display: flex;
+  margin: auto;
+  justify-content: end;
+  max-width: 600px;
 }
 
 .CreateTodoButton button {
-	padding: 0.5rem;
-	font-size: 2.5rem;
-	border-radius: 10px;
-	background-color: #5500ff;
-	color: var(--primary-color);
-	transition: all var(--transition);
+  padding: 0.5rem;
+  margin: 1.5rem 1rem;
+  font-size: 1.8rem;
+  border-radius: 10px;
+  background-color: #5500ff;
+  color: var(--primary-color);
+  transition: background-color var(--transition);
 }
 
 .CreateTodoButton button:hover {
-	background-color: #310094;
+  background-color: #310094;
+}
+@media screen and (min-width: 500px) {
+  .CreateTodoButton button {
+    font-size: 2.5rem;
+  }
 }
