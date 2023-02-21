@@ -7,11 +7,11 @@ created: false
 indexTodo: ''
 newTodo: ''
 */
-const SET_TODOS = 'SET_TODOS';
-const SET_INDEX_TODO = 'SET_INDEX_TODO';
-const ADD_TODO = 'ADD_TODO';
-const DELETE_TODO = 'DELETE_TODO';
-const TOGGLE_COMPLETED_TODO = 'TOGGLE_COMPLETED_TODO';
+export const SET_TODOS = 'SET_TODOS';
+export const SET_INDEX_TODO = 'SET_INDEX_TODO';
+export const ADD_TODO = 'ADD_TODO';
+export const DELETE_TODO = 'DELETE_TODO';
+export const TOGGLE_COMPLETED_TODO = 'TOGGLE_COMPLETED_TODO';
 
 export const initialTodoState = {
   todos: [],
@@ -35,16 +35,17 @@ export default function todoReducer(state, action) {
     case DELETE_TODO:
       return {
         ...state,
-        todos: state.todos.filter((todo) => todo.id !== state.indexTodo),
+        todos: state.todos.filter((todo) => todo.id !== action.payload),
       };
     case TOGGLE_COMPLETED_TODO:
-      const indexTodo = state.todos.findIndex(({ id }) => id === payload);
+      const indexTodo = state.todos.findIndex(
+        ({ id }) => id === action.payload
+      );
       const newTodos = structuredClone(state.todos);
-      newTodos[indexTodo].completed = !newTodos[indexTodo].completed;
+      if (indexTodo)
+        newTodos[indexTodo].completed = !newTodos[indexTodo].completed;
       return { ...state, todos: newTodos };
     default:
       return state;
   }
 }
-
-

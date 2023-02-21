@@ -23,7 +23,7 @@ const App = () => {
 
         <CreateTodoButton />
 
-        {deleted && <ConfirmDelete />}
+        {/* {deleted && <ConfirmDelete />} */}
 
         {created && <CreateTodo />}
       </TestProvider>

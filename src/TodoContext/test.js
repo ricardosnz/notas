@@ -1,5 +1,11 @@
 import React, { createContext, useReducer, useEffect } from 'react';
-import todoReducer, { initialTodoState } from '../reducers';
+import todoReducer, {
+  initialTodoState,
+  SET_TODOS,
+  ADD_TODO,
+  DELETE_TODO,
+  TOGGLE_COMPLETED_TODO,
+} from '../reducers';
 
 export const TestContext = createContext();
 
@@ -10,7 +16,7 @@ export default function TestProvider({ children }) {
     const localStorageTodos = localStorage.getItem('TODOV1');
     if (!localStorageTodos) return;
     const parseTodos = JSON.parse(localStorageTodos);
-    dispatch({ type: 'SET_TODOS', payload: parseTodos });
+    dispatch({ type: SET_TODOS, payload: parseTodos });
   }, []);
 
   const createTodo = (todo) => {
@@ -18,7 +24,7 @@ export default function TestProvider({ children }) {
   };
 
   const toggleCompletedTodo = (pk) => {
-    dispatch({ type: TOGGLE_COMPLETED_TODO, pk });
+    dispatch({ type: TOGGLE_COMPLETED_TODO, payload: pk });
   };
 
   const deleteTodo = (pk) => {

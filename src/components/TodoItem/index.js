@@ -4,8 +4,9 @@ import './TodoItem.css';
 import useTodos from '../../hooks/useTodos';
 
 import Modal from '../Modal';
+import { ConfirmDelete } from '../ConfirmDelete';
 
-const TodoItem = ({ todo }) => {
+const TodoItemer = ({ todo }) => {
   const { handleCompletedTodo, handleConfirmDelete } = useContext(TodoContext);
   const classNameCompleted = todo.completed ? 'completed' : '';
   const contentCompleted = todo.completed ? '🔨' : '✔';
@@ -27,20 +28,25 @@ const TodoItem = ({ todo }) => {
   );
 };
 
-const TodoItemer = ({ todo }) => {
-  const { toggleCompletedTodo } = useTodos();
+const TodoItem = ({ todo }) => {
+  const { toggleCompletedTodo, deleteTodo } = useTodos();
   const [toggleModal, setToggleModal] = useState(false);
-
-  const classNameCompleted = todo.completed ? 'completed' : '';
-  const contentCompleted = todo.completed ? '🔨' : '✔';
 
   const handleCompletedTodo = () => {
     toggleCompletedTodo(todo.id);
   };
 
-  const handleConfirmDelete = () => {
+  const confirmedDelete = () => {
+    deleteTodo(todo.id);
+    setToggleModal(false);
+  };
+
+  const toggleConfirmDelete = () => {
     setToggleModal((prevToggleModal) => !prevToggleModal);
   };
+
+  const classNameCompleted = todo.completed ? 'completed' : '';
+  const contentCompleted = todo.completed ? '🔨' : '✔';
 
   return (
     <li className={`TodoItem ${classNameCompleted}`}>
@@ -48,9 +54,16 @@ const TodoItemer = ({ todo }) => {
         {contentCompleted}
       </button>
       <h2 className="titleTodo">{todo.title}</h2>
-      <button className="deleteIcon" onClick={handleConfirmDelete}>
+      <button className="deleteIcon" onClick={toggleConfirmDelete}>
         🗑
       </button>
+      {toggleModal && (
+        <ConfirmDelete
+          todo={todo.title}
+          confirmedDelete={confirmedDelete}
+          toggleConfirmDelete={toggleConfirmDelete}
+        />
+      )}
     </li>
   );
 };

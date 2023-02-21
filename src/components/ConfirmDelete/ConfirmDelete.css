@@ -1,6 +1,9 @@
 .ConfirmDelete .ConfirmDelete-title {
   font-size: 1rem;
 }
+.ConfirmDelete .ConfirmDelete-title span {
+  color: var(--red);
+}
 
 .ConfirmDelete button {
   padding: 1rem 2rem;
