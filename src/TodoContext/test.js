@@ -1,4 +1,11 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import React, {
+  createContext,
+  useState,
+  useReducer,
+  useEffect,
+  useCallback,
+  useRef
+} from 'react';
 import todoReducer, {
   initialTodoState,
   SET_TODOS,
@@ -11,6 +18,9 @@ export const TestContext = createContext();
 
 export default function TestProvider({ children }) {
   const [state, dispatch] = useReducer(todoReducer, initialTodoState);
+  const [filtered, setFiltered] = useState([]);
+
+  const valor = useRef('')
 
   useEffect(() => {
     const localStorageTodos = localStorage.getItem('TODOV1');
@@ -31,9 +41,33 @@ export default function TestProvider({ children }) {
     dispatch({ type: DELETE_TODO, payload: pk });
   };
 
+  useEffect(() => {
+    setFiltered(state.todos);
+  }, [state.todos]);
+
+  const filterTodos = useCallback(
+    (value) => {
+      if (value === valor) return
+      valor.current = value
+      const todos = state.todos.filter(({ title }) =>
+        title.toLowerCase().includes(value.toLowerCase())
+      );
+      console.log('filter', todos);
+      setFiltered(todos);
+    },
+    [filtered]
+  );
+
   return (
     <TestContext.Provider
-      value={{ createTodo, toggleCompletedTodo, deleteTodo, ...state }}
+      value={{
+        createTodo,
+        toggleCompletedTodo,
+        deleteTodo,
+        ...state,
+        filterTodos,
+        filtered,
+      }}
     >
       {children}
     </TestContext.Provider>

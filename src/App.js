@@ -7,7 +7,7 @@ import { TodoCounter } from './components/TodoCounter';
 import { TodoList } from './components/TodoList';
 import { TodoSearch } from './components/TodoSearch';
 
-import TestProvider from './TodoContext/test'
+import TestProvider from './TodoContext/test';
 
 const App = () => {
   const { created, deleted } = useContext(TodoContext);
@@ -23,9 +23,6 @@ const App = () => {
 
         <CreateTodoButton />
 
-        {/* {deleted && <ConfirmDelete />} */}
-
-        {created && <CreateTodo />}
       </TestProvider>
     </div>
   );

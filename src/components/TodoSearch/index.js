@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { TodoContext } from '../../TodoContext';
 import './TodoSearch.css';
+
+import useTodos from '../../hooks/useTodos';
+
 const TodoSearcher = () => {
   const { searchValue, setSearchValue } = useContext(TodoContext);
 
@@ -32,10 +35,11 @@ const TodoSearcher = () => {
 
 const TodoSearch = () => {
   const [search, setSearch] = useState('');
+  const { filterTodos, filtered, todos } = useTodos();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // filterTodos(search)
+    filterTodos(search);
   };
   const handleChange = ({ target }) => {
     setSearch(target.value);

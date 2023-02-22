@@ -1,4 +1,3 @@
-import { useReducer, useEffect } from 'react';
 /*
 todos: []
 searchValue: ''
@@ -7,6 +6,7 @@ created: false
 indexTodo: ''
 newTodo: ''
 */
+import { getMaxId } from '../utils';
 export const SET_TODOS = 'SET_TODOS';
 export const SET_INDEX_TODO = 'SET_INDEX_TODO';
 export const ADD_TODO = 'ADD_TODO';
@@ -27,8 +27,8 @@ export default function todoReducer(state, action) {
       return { ...state, indexTodo: action.payload };
     case ADD_TODO:
       const newTodo = {
-        id: state.todos.length + 1,
-        ...payload,
+        id: getMaxId(state.todos),
+        title: action.payload,
         completed: false,
       };
       return { ...state, todos: [...state.todos, newTodo] };
@@ -42,8 +42,7 @@ export default function todoReducer(state, action) {
         ({ id }) => id === action.payload
       );
       const newTodos = structuredClone(state.todos);
-      if (indexTodo)
-        newTodos[indexTodo].completed = !newTodos[indexTodo].completed;
+      newTodos[indexTodo].completed = !newTodos[indexTodo].completed;
       return { ...state, todos: newTodos };
     default:
       return state;

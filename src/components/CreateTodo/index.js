@@ -5,7 +5,7 @@ import './CreateTodo.css';
 import Modal from '../Modal';
 import useTodos from '../../hooks/useTodos';
 
-const CreateTodo = () => {
+const CreateTodoer = () => {
   const { handleConfirmTodo, handleCreateTodo, setNewTodo } =
     useContext(TodoContext);
 
@@ -38,13 +38,11 @@ const CreateTodo = () => {
   );
 };
 
-const CreateTodoer = () => {
-  const { createTodo } = useTodos()
-
+const CreateTodo = ({ confirmedTodo, toggleContirmTodo }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    createTodo(e.target.elements.todoInput.value);
-  }
+    confirmedTodo(e.target.elements.todoInput.value);
+  };
 
   return (
     <Modal classname="CreateTodo">
@@ -58,10 +56,8 @@ const CreateTodoer = () => {
           placeholder="Crea tu To Do aqui ..."
         />
         <div className="buttons">
-          <button className="buttons__add" onClick={handleCreateTodo}>
-            Agregar
-          </button>
-          <button className="buttons__cancel" onClick={handleConfirmTodo}>
+          <button type="submit" className="buttons__add">Agregar</button>
+          <button type="button" className="buttons__cancel" onClick={toggleContirmTodo}>
             Cancelar
           </button>
         </div>

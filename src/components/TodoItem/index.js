@@ -36,13 +36,13 @@ const TodoItem = ({ todo }) => {
     toggleCompletedTodo(todo.id);
   };
 
+  const toggleConfirmDelete = () => {
+    setToggleModal((prevToggleModal) => !prevToggleModal);
+  };
+
   const confirmedDelete = () => {
     deleteTodo(todo.id);
     setToggleModal(false);
-  };
-
-  const toggleConfirmDelete = () => {
-    setToggleModal((prevToggleModal) => !prevToggleModal);
   };
 
   const classNameCompleted = todo.completed ? 'completed' : '';
