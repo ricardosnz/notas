@@ -4,8 +4,10 @@ import React, {
   useReducer,
   useEffect,
   useCallback,
-  useRef
+  useRef,
 } from 'react';
+import debounce from 'just-debounce-it';
+
 import todoReducer, {
   initialTodoState,
   SET_TODOS,
@@ -18,9 +20,9 @@ export const TestContext = createContext();
 
 export default function TestProvider({ children }) {
   const [state, dispatch] = useReducer(todoReducer, initialTodoState);
-  const [filtered, setFiltered] = useState([]);
+  const [filteredTodos, setFilteredTodos] = useState([]);
 
-  const valor = useRef('')
+  const previousValue = useRef('');
 
   useEffect(() => {
     const localStorageTodos = localStorage.getItem('TODOV1');
@@ -42,20 +44,19 @@ export default function TestProvider({ children }) {
   };
 
   useEffect(() => {
-    setFiltered(state.todos);
+    setFilteredTodos(state.todos);
   }, [state.todos]);
 
   const filterTodos = useCallback(
-    (value) => {
-      if (value === valor) return
-      valor.current = value
+    debounce((value) => {
+      if (value === previousValue.current) return;
+      previousValue.current = value;
       const todos = state.todos.filter(({ title }) =>
         title.toLowerCase().includes(value.toLowerCase())
       );
-      console.log('filter', todos);
-      setFiltered(todos);
-    },
-    [filtered]
+      setFilteredTodos(todos);
+    }, 700),
+    [filteredTodos]
   );
 
   return (
@@ -64,9 +65,8 @@ export default function TestProvider({ children }) {
         createTodo,
         toggleCompletedTodo,
         deleteTodo,
-        ...state,
         filterTodos,
-        filtered,
+        filteredTodos,
       }}
     >
       {children}

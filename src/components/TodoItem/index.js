@@ -13,7 +13,6 @@ const TodoItemer = ({ todo }) => {
 
   return (
     <li className={`TodoItem ${classNameCompleted}`}>
-      {/* <Modal /> */}
       <button
         className="uncompleted-Icon"
         onClick={() => handleCompletedTodo(todo)}

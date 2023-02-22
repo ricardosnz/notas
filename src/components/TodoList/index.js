@@ -20,13 +20,13 @@ const TodoLister = () => {
 };
 
 const TodoList = () => {
-  const { todos, filtered } = useTodos();
+  const { todos, filteredTodos } = useTodos();
   return (
     <ul className="TodoList">
-      {!filtered.length ? (
-        <h3>No hay tareas...</h3>
+      {!filteredTodos.length ? (
+        <h3>You do not have ToDo's...</h3>
       ) : (
-        filtered.map((todo) => <TodoItem key={todo.id} todo={todo} />)
+        filteredTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
       )}
     </ul>
   );

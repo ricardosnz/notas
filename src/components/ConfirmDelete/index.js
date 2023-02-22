@@ -31,14 +31,14 @@ const ConfirmDelete = ({ todo, confirmedDelete, toggleConfirmDelete }) => {
   return (
     <Modal classname="ConfirmDelete">
       <h3 className="ConfirmDelete-title">
-        Estas seguro de eliminar a <span>{todo}</span>?
+        Are you sure to delete this <span>{todo}</span>?
       </h3>
       <div>
         <button className="confirmButton" onClick={confirmedDelete}>
-          Eliminar
+          Delete
         </button>
         <button className="cancelButton" onClick={toggleConfirmDelete}>
-          Cancelar
+          Cancel
         </button>
       </div>
     </Modal>

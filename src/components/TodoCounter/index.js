@@ -16,11 +16,17 @@ const TodoCounterer = () => {
 };
 
 const TodoCounter = () => {
-  const { todos } = useTodos();
-  const completedTodos = todos.filter(({ completed }) => completed).length;
+  const { filteredTodos } = useTodos();
+  const completedTodos = filteredTodos.filter(
+    ({ completed }) => completed
+  ).length;
+
+  const total = filteredTodos.length;
+
+  if (!total) return null;
   return (
     <div className="TodoCounter">
-      Haz completado {completedTodos} de {todos.length} ToDo's
+      You have completed {completedTodos} of {total} ToDo's
     </div>
   );
 };

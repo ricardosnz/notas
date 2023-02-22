@@ -15,7 +15,6 @@ export const TOGGLE_COMPLETED_TODO = 'TOGGLE_COMPLETED_TODO';
 
 export const initialTodoState = {
   todos: [],
-  indexTodo: '',
 };
 
 // removed: SET_SEARCH_VALUE, SET_DELETED, SET_CREATED, SET_NEW_TODO,
@@ -23,8 +22,6 @@ export default function todoReducer(state, action) {
   switch (action.type) {
     case SET_TODOS:
       return { ...state, todos: action.payload };
-    case SET_INDEX_TODO:
-      return { ...state, indexTodo: action.payload };
     case ADD_TODO:
       const newTodo = {
         id: getMaxId(state.todos),

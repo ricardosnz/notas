@@ -20,7 +20,7 @@ const CreateTodoButton = () => {
 
   return (
     <div className="CreateTodoButton">
-      <button onClick={toggleContirmTodo}>Crear</button>
+      <button onClick={toggleContirmTodo}>Create</button>
       {toggleModal && (
         <CreateTodo
           confirmedTodo={confirmedTodo}

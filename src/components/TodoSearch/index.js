@@ -43,7 +43,7 @@ const TodoSearch = () => {
   };
   const handleChange = ({ target }) => {
     setSearch(target.value);
-    // filterTodos(target.value)
+    filterTodos(target.value);
   };
 
   return (
@@ -55,7 +55,7 @@ const TodoSearch = () => {
             name="search"
             value={search}
             onChange={handleChange}
-            placeholder="Buscar to do..."
+            placeholder="Limpiar el salon, correr..."
           ></input>
           🔍
         </label>
