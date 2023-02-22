@@ -5,3 +5,14 @@ export const getMaxId = (elements) => {
   else elementsId = elements;
   return Math.max(...elementsId) + 1;
 };
+
+export const saveTodos = (newContent) => {
+  const parsedContent = JSON.stringify(newContent);
+  localStorage.setItem('TODOV1', parsedContent);
+};
+
+export const getTodos = () => {
+  const todos = localStorage.getItem('TODOV1');
+  if (!todos) return [];
+  return JSON.parse(todos);
+};

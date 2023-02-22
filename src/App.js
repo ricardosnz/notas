@@ -1,31 +1,19 @@
-import React, { useContext } from 'react';
-import { TodoContext } from './TodoContext';
-import { ConfirmDelete } from './components/ConfirmDelete';
-import { CreateTodo } from './components/CreateTodo';
+import React from 'react';
 import { CreateTodoButton } from './components/CreateTodoButton';
 import { TodoCounter } from './components/TodoCounter';
 import { TodoList } from './components/TodoList';
 import { TodoSearch } from './components/TodoSearch';
 
-import TestProvider from './TodoContext/test';
+const App = () => (
+  <div className="App">
+    <TodoSearch />
 
-const App = () => {
-  const { created, deleted } = useContext(TodoContext);
+    <TodoCounter />
 
-  return (
-    <div className="App">
-      <TestProvider>
-        <TodoSearch />
+    <TodoList />
 
-        <TodoCounter />
-
-        <TodoList />
-
-        <CreateTodoButton />
-
-      </TestProvider>
-    </div>
-  );
-};
+    <CreateTodoButton />
+  </div>
+);
 
 export default App;

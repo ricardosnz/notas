@@ -1,7 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { TodoContext } from '../../TodoContext';
+import React, { useState } from 'react';
 import './CreateTodoButton.css';
-
 import { CreateTodo } from '../CreateTodo';
 import useTodos from '../../hooks/useTodos';
 

@@ -10,18 +10,6 @@
   width: 100%;
   background-color: rgba(0, 0, 0, 0.256);
   backdrop-filter: blur(4px);
-  opacity: 1;
-  /* animation: opened 400ms ease-out alternate; */
-}
-@keyframes opened {
-  to {
-    backdrop-filter: blur(0px);
-    opacity: 0.2;
-  }
-  from {
-    backdrop-filter: blur(4px);
-    opacity: 1;
-  }
 }
 
 .Modal .Modal-container {
