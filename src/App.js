@@ -7,11 +7,8 @@ import { TodoSearch } from './components/TodoSearch';
 const App = () => (
   <div className="App">
     <TodoSearch />
-
     <TodoCounter />
-
     <TodoList />
-
     <CreateTodoButton />
   </div>
 );
