@@ -1,38 +1,39 @@
-import React, { useContext } from 'react';
-import { TodoContext } from '../../TodoContext';
+import React from 'react';
 import './CreateTodo.css';
+import Modal from '../Modal';
 
-const CreateTodo = () => {
-  const { handleConfirmTodo, handleCreateTodo, setNewTodo } =
-    useContext(TodoContext);
-
-  const handleSubmit = (e) => e.preventDefault();
-
-  const handleChange = (e) => setNewTodo(e.target.value);
+const CreateTodo = ({ confirmedTodo, toggleContirmTodo }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { todoInput } = e.target.elements;
+    if (todoInput.value !== '') confirmedTodo(todoInput.value);
+  };
 
   return (
-    <div className="CreateTodo">
+    <Modal classname="CreateTodo">
       <form onSubmit={handleSubmit}>
         <label htmlFor="todoInput" className="title">
-          Crear otra Tarea
+          Create another note
         </label>
         <input
           id="todoInput"
           className="todoInput"
-          onChange={handleChange}
-          type="text"
-          placeholder="Crea tu To Do aqui ..."
+          placeholder="Levantarse para desayunar..."
         />
         <div className="buttons">
-          <button className="buttons__cancel" onClick={handleConfirmTodo}>
-            Cancelar
+          <button type="submit" className="buttons__add">
+            Add
           </button>
-          <button className="buttons__add" onClick={handleCreateTodo}>
-            Agregar
+          <button
+            type="button"
+            className="buttons__cancel"
+            onClick={toggleContirmTodo}
+          >
+            Cancel
           </button>
         </div>
       </form>
-    </div>
+    </Modal>
   );
 };
 

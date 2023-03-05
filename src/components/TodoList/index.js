@@ -1,17 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './TodoList.css';
 import { TodoItem } from '../TodoItem';
-import { TodoContext } from '../../TodoContext';
+import useTodos from '../../hooks/useTodos';
 
 const TodoList = () => {
-  const { listTodos } = useContext(TodoContext);
-
+  const { filteredTodos } = useTodos();
   return (
     <ul className="TodoList">
-      {listTodos.length > 0 ? (
-        listTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
+      {!filteredTodos.length ? (
+        <h3>You do not have ToDo's...</h3>
       ) : (
-        <h3>No hay tareas.</h3>
+        filteredTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
       )}
     </ul>
   );

@@ -1,30 +1,45 @@
-import React, { useContext } from 'react';
-import { TodoContext } from '../../TodoContext';
+import React, { useState } from 'react';
 import './TodoItem.css';
-// pendiente cambiar el icono de elimminar
+import useTodos from '../../hooks/useTodos';
+import { ConfirmDelete } from '../ConfirmDelete';
+
 const TodoItem = ({ todo }) => {
-  const { handleCompletedTodo, handleConfirmDelete } = useContext(TodoContext);
+  const { toggleCompletedTodo, deleteTodo } = useTodos();
+  const [toggleModal, setToggleModal] = useState(false);
+
+  const handleCompletedTodo = () => {
+    toggleCompletedTodo(todo.id);
+  };
+
+  const toggleConfirmDelete = () => {
+    setToggleModal((prevToggleModal) => !prevToggleModal);
+  };
+
+  const confirmedDelete = () => {
+    deleteTodo(todo.id);
+    setToggleModal(false);
+  };
+
+  const classNameCompleted = todo.completed ? 'completed' : '';
+  const contentCompleted = todo.completed ? '🔨' : '✔';
 
   return (
-    <>
-      <li className="TodoItem">
-        <button
-          className={`uncompleted-Icon ${todo.completed && 'completed-Icon'}`}
-          onClick={() => handleCompletedTodo(todo)}
-        >
-          {todo.completed ? <span>completado</span> : <span>complentar</span>}
-        </button>
-        <div className={`titleTodo ${todo.completed && 'completed'}`}>
-          {todo.title}
-        </div>
-        <button
-          className="deleteIcon"
-          onClick={() => handleConfirmDelete(todo)}
-        >
-          Eliminar
-        </button>
-      </li>
-    </>
+    <li className={`TodoItem ${classNameCompleted}`}>
+      <button className="uncompleted-Icon" onClick={handleCompletedTodo}>
+        {contentCompleted}
+      </button>
+      <h2 className="titleTodo">{todo.title}</h2>
+      <button className="deleteIcon" onClick={toggleConfirmDelete}>
+        🗑
+      </button>
+      {toggleModal && (
+        <ConfirmDelete
+          todo={todo.title}
+          confirmedDelete={confirmedDelete}
+          toggleConfirmDelete={toggleConfirmDelete}
+        />
+      )}
+    </li>
   );
 };
 

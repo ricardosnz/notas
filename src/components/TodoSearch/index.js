@@ -1,32 +1,32 @@
-import React, { useContext } from 'react';
-import { TodoContext } from '../../TodoContext';
+import React, { useState } from 'react';
 import './TodoSearch.css';
-// pendiente icono del buscador
-const TodoSearch = () => {
-  const { searchValue, setSearchValue } = useContext(TodoContext);
+import useTodos from '../../hooks/useTodos';
 
-  const handleChange = (e) => {
-    setSearchValue(e.target.value);
-  };
+const TodoSearch = () => {
+  const [search, setSearch] = useState('');
+  const { filterTodos } = useTodos();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    filterTodos(search);
+  };
+  const handleChange = ({ target }) => {
+    setSearch(target.value);
+    filterTodos(target.value);
   };
 
   return (
     <div className="TodoSearch">
       <h2 className="search__title">ToDo</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="search__form">
         <label htmlFor="search" className="search__input">
-          <ion-icon name="search-outline"></ion-icon>bus
           <input
-            id="search"
-            type="text"
-            value={searchValue}
+            name="search"
+            value={search}
             onChange={handleChange}
-            placeholder="Buscar to do..."
+            placeholder="Limpiar el salon, correr..."
           ></input>
-          aa
+          🔍
         </label>
       </form>
     </div>

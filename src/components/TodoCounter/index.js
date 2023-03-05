@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
-import { TodoContext } from '../../TodoContext';
+import React from 'react';
 import './TodoCounter.css';
+import useTodos from '../../hooks/useTodos';
 
 const TodoCounter = () => {
-  const { todos } = useContext(TodoContext);
+  const { filteredTodos } = useTodos();
+  const completedTodos = filteredTodos.filter(
+    ({ completed }) => completed
+  ).length;
 
-  const completedTodos = todos.filter(todo => todo.completed);
+  const total = filteredTodos.length;
+
+  if (!total) return null;
   return (
     <div className="TodoCounter">
-      Haz completado {completedTodos.length} de {todos.length} ToDo's
+      You have completed {completedTodos} of {total} ToDo's
     </div>
   );
 };

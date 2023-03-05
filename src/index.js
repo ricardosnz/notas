@@ -1,17 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import './index.css';
-
-import { TodoProvider } from './TodoContext';
-
 import App from './App';
+import TodoProvider from './context/TodoContext';
 
-//terminar la version movil y agregarle los iconos faltantes
-
-ReactDOM.render(
-  <TodoProvider>
-    <App />
-  </TodoProvider>,
-  document.getElementById('root')
-);
+ReactDOM.render(<TodoProvider><App /></TodoProvider>, document.getElementById('root'));
